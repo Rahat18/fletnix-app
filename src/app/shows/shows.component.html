@@ -1,0 +1,96 @@
+<div class="d-flex shows-wrapper" [ngStyle]="{
+    'height': showdetails ? '100vh' : 'auto'}">
+    <div>
+        <nav class="navbar bg-dark border-bottom border-body registration-navbar d-flex a-center" data-bs-theme="dark">
+            <span class="fletnix-logo" (click)="gotoHome()">FletNix</span>
+            <span class="search-input" *ngIf="!showdetails">
+                <input type="text" [(ngModel)]="searchTerm" (input)="onSearchChange()"
+                    placeholder="Search titles or director..." class="f-inter" />
+                <span class="toggle-password">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16" style="color:#fff">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                </span>
+            </span>
+        </nav>
+    </div>
+    <div class="d-flex dropdown-select a-center" *ngIf="!showdetails">
+        <label class="f-inter">Type:</label>
+        <select class="form-select f-inter" aria-label="Default select example" [(ngModel)]="filterType"
+            (change)="onFilterChange()" data-bs-theme="dark">
+            <option value="" class="f-inter">All</option>
+            <option value="Movie" class="f-inter">Movie</option>
+            <option value="TV Show" class="f-inter">TV Show</option>
+        </select>
+    </div>
+    <div class="grid-container" *ngIf="!loading && !showdetails">
+        <div class="grid-item" *ngFor="let item of displayedTitles" (click)="showDetails(item)">
+            <div class="grid-item-img"></div>
+            <div class="d-flex title-wrapper j-center">
+                <h3 class="f-inter">{{ item.title }}</h3>
+
+            </div>
+            <div class="release-year">
+                <p class="f-inter">{{ item.type }} - {{ item.release_year }}</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="grid-container" *ngIf="loading">
+        <div class="grid-item" *ngFor="let item of dummyArray">
+            <div class="grid-item-img"></div>
+            <div class="d-flex title-wrapper j-center">
+                <h3 class="f-inter">Loading...</h3>
+            </div>
+        </div>
+    </div>
+    <div class="pagination-controls d-flex" *ngIf="!loading && !showdetails">
+        <button (click)="previousPage()" *ngIf="currentPage !== 1" class="f-inter">Previous</button>
+
+        <span *ngFor="let page of pageNumbers">
+            <button *ngIf="page !== -1" (click)="goToPage(page)" [ngStyle]="{
+          'color': currentPage === page ? '#E50914' : '#fff'}" class="f-inter">
+                {{ page }}
+            </button>
+            <span *ngIf="page === -1">...</span>
+        </span>
+
+        <button (click)="nextPage()" *ngIf="currentPage !== totalPages" class="f-inter">Next</button>
+    </div>
+
+    <div class="page-info d-flex f-inter" *ngIf="!loading && !showdetails">
+        Page {{ currentPage }} of {{ totalPages }}
+    </div>
+
+    <div *ngIf="showdetails" class="details-section">
+        <div class="details-section-header d-flex">
+            <img src="assets/img/freepik__a-vintageinspired-logo-for-fletnix-featuring.jpeg">
+            <div class="d-flex additional-details">
+                <span class="header">
+                    <p class="f-inter">{{collectionDetails.title}} - {{collectionDetails.release_year}}</p>
+                    <p class="f-inter">{{collectionDetails.show_id}} : {{collectionDetails.description}}</p>
+                </span>
+                <span class="d-flex details-span">
+                    <p>Duration : {{collectionDetails.duration}}</p>
+                    <p>Rating : {{collectionDetails.rating}}</p>
+                </span>
+                <span class="d-flex details-span">
+                    <p>Listed in : {{collectionDetails.listed_in}}</p>
+                    <p>Type : {{collectionDetails.type}}</p>
+                </span>
+                <span class="d-flex details-span">
+                    <p>Added on : {{collectionDetails.date_added}}</p>
+                </span>
+                <span class="d-flex details-span" *ngIf="collectionDetails.director">
+                    <p>Director : {{collectionDetails.director}}</p>
+                </span>
+                <span class="d-flex details-span" *ngIf="collectionDetails.cast">
+                    <p>Cast : {{collectionDetails.cast}}</p>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</div>

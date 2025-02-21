@@ -1,0 +1,101 @@
+.registration-wrapper {
+    background-color: #0B0604;
+}
+.registration-background {
+    background-image: url('../../assets/img/netflix-bg.jpg');
+    height: calc(100vh - 16px);
+    background-repeat: no-repeat;
+    width: 100%;
+    background-position: center;
+    -webkit-filter: brightness(0.8);
+    filter: brightness(0.4);
+    background-size: cover;
+
+    @media(max-width:767px){
+        // background-image: none;
+    }
+}
+.registration-navbar {
+    position: absolute;
+    top: 10px;
+    left: 80px;
+    z-index: 3;
+    height: 64px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 0 4px;
+    border-radius: 4px;
+
+    @media(max-width:767px){
+       left: 40px;
+    }
+    .fletnix-logo {
+        color: #E50914;
+        font-size: 48px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+}
+.banner-text{
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    flex-direction: column;
+    gap: 16px;
+    @media(max-width:767px){
+        left: 0px;
+        padding: 0 16px;
+        top: 30%;
+     }
+    h1{
+        font-size: 36px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 140%;
+        margin: 0;
+        @media(max-width:767px){
+            font-size: 28px;
+            text-align: center;
+         }
+    }
+    h3{
+        font-size: 20px;
+        font-weight: 500;
+        color: #fff;
+        line-height: 140%;
+        text-align: center;
+        margin: 0;
+        @media(max-width:767px){
+            font-size: 16px;
+         }
+    }
+    div{
+        flex-direction: row;
+        gap: 32px;
+        margin-top: 20px;
+
+        @media(max-width:767px){
+         gap: 16px; 
+         }
+    }
+    button {
+        width: 200px;
+        padding: 10px;
+        background-color: rgb(229, 9, 20);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: 500;
+        @media(max-width:767px){
+          width: 150px;
+        }
+    }
+
+    button:disabled {
+        background-color: rgb(229, 9, 20);
+        pointer-events: none;
+    }
+}

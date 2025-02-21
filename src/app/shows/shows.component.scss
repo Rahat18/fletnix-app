@@ -1,0 +1,229 @@
+.registration-navbar {
+    position: relative;
+    top: 10px;
+    z-index: 3;
+    height: 64px;
+    margin: 0 0 30px 0;
+    border-radius: 4px;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media(max-width:767px) {
+        left: 0px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 24px;
+        height: auto;
+        .search-input {
+            width: 100%;
+          }
+    }
+
+    .fletnix-logo {
+        color: #E50914;
+        font-size: 48px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+    input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 20px;
+        color: #fff;
+        background-color: transparent !important;
+    }
+
+}
+
+.nav-wrapper {
+    background-color: #0B0604;
+    height: 100vh;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    color: #aaa;
+    @media(max-width:767px){
+        top: 82%;
+    }
+}
+
+.shows-wrapper {
+    background-color: #0B0604;
+    height: auto;
+    flex-direction: column;
+    padding: 0 80px;
+    @media(max-width:767px) {
+        left: 0px;
+        padding: 0 16px;
+    }
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+    margin: 60px 0
+}
+
+.grid-item {
+    flex: 1 0 calc(20% - 16px);
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    height: 320px;
+    width: 200px;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+.grid-item-img {
+    background-image: url('../../assets/img/freepik__a-vintageinspired-logo-for-fletnix-featuring.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 200px;
+}
+@media (max-width: 1000px) {
+    .grid-item {
+        flex: 1 0 calc(33.33% - 16px);
+    }
+}
+
+@media (max-width: 500px) {
+    .grid-item {
+        flex: 1 0 calc(50% - 16px);
+    }
+}
+
+select {
+    width: 100px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #ccc;
+    background-color: transparent !important;
+}
+
+.dropdown-select {
+    gap: 16px;
+    justify-content: flex-end;
+
+    label {
+        color: #ccc;
+        font-size: 18px;
+    }
+}
+
+option {
+    background-color: transparent;
+    color: #ccc;
+}
+
+select::-webkit-scrollbar {
+    background: transparent;
+}
+
+select::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.title-wrapper {
+
+    flex-direction: column;
+    height: 70px;
+
+    h3,
+    p {
+        margin: 0;
+        color: #ccc
+    }
+}
+
+.release-year {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 30px;
+    p {
+        margin: 0;
+        color: #ccc
+    }
+}
+
+.pagination-controls,
+.page-info {
+    justify-content: flex-end;
+
+    span,
+    button {
+        color: #ccc;
+    }
+
+    button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+.page-info {
+    color: #ccc;
+    margin-top: 8px;
+    margin-bottom: 32px;
+}
+.details-section{
+    p{
+        margin: 0;
+        color: #ccc;
+        line-height: 140%;
+     }
+    .details-section-header{
+        flex-direction: row;
+        gap: 100px;
+        img{
+            height: 300px;
+        }
+        .header{
+         p:first-child{
+          font-size: 64px;
+          font-weight: 600;
+          
+         }
+         p:last-child{
+            font-size: 20px;
+            font-weight: 500;
+            margin-top: 24px;
+            
+           }
+        }
+    }
+    .additional-details{
+        flex-direction: column;
+        justify-content: flex-end;
+        .details-span{
+   flex-direction: row;
+   justify-content: space-between;
+   margin-top: 20px;
+   p{
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Inter';
+   }
+        }
+    }
+}

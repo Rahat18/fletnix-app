@@ -1,0 +1,194 @@
+.registration-wrapper {
+    background-color: #0B0604;
+ 
+    @media(max-width:767px){
+        padding: 0 16px;
+    }
+    .registration-background {
+        background-image: url('../../assets/img/netflix-bg.jpg');
+        height: calc(100vh - 16px);
+        background-repeat: no-repeat;
+        width: 100%;
+        background-position: center;
+        -webkit-filter: brightness(0.8);
+        filter: brightness(0.8);
+        background-size: cover;
+
+        @media(max-width:767px){
+            // background-image: none;
+        }
+    }
+
+    .registration-form-wrapper {
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 2;
+        position: absolute;
+        // height: 500px;
+        height: auto;
+        padding: 48px 68px;
+        width: 300px;
+        margin: auto;
+        text-align: left;
+        border-radius: 10px;
+
+        @media(max-width:767px){
+            padding: 30px;
+            width: 280px;
+            height: auto;
+        }
+
+        .sign-in {
+            color: #fff;
+            font-size: 32px;
+            line-height: 140%;
+            margin: 0 0 28px 0;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 20px;
+            color: #fff;
+            background-color: transparent !important;
+        }
+
+        .error small {
+            color: red;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(229, 9, 20);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        button:disabled {
+            background-color: rgb(229, 9, 20);
+            pointer-events: none;
+        }
+
+        .toggle-btn {
+            background-color: rgba(128, 128, 128, 0.4);
+            margin-top: 15px;
+        }
+
+        a {
+            display: block;
+            margin-top: 15px;
+            color: #fff;
+            cursor: pointer;
+            text-align: right;
+        }
+
+        .floating-label-group {
+            position: relative;
+            margin-bottom: 22px;
+        }
+
+        .floating-label-group input {
+            width: 100%;
+            padding: 14px 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: transparent !important;
+        }
+
+        .floating-label-group input::placeholder {
+            color: transparent;
+        }
+
+        .floating-label-group label {
+            position: absolute;
+            pointer-events: none;
+            left: 12px;
+            top: 14px;
+            transition: 0.2s ease all;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 2px 4px;
+            font-weight: 600;
+        }
+
+        .floating-label-group input:focus~label,
+        .floating-label-group input:not(:placeholder-shown)~label {
+            top: -10px;
+            left: 10px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .floating-label-group input[type="date"]:focus~label,
+        .floating-label-group input[type="date"]:not(:placeholder-shown)~label {
+            top: -10px;
+            left: 10px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .floating-label-group input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 16px;
+            color: #aaa;
+        }
+
+        .toggle-password:hover {
+            color: #333;
+        }
+
+    }
+}
+
+.registration-navbar {
+    position: absolute;
+    top: 10px;
+    left: 80px;
+    z-index: 3;
+    height: 64px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 0 4px;
+    border-radius: 4px;
+
+    @media(max-width:767px){
+       left: 40px;
+    }
+    .fletnix-logo {
+        color: #E50914;
+        font-size: 48px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+}
