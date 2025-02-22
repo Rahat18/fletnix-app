@@ -45,9 +45,12 @@ export class UserRegistrationComponent implements OnInit{
       this.authService.register(this.signUpForm.value).subscribe(
         res => {
           // console.log(res.msg);
-         if(res){
-          this.router.navigate(['/shows']);
-         }
+          // this.router.navigate(['/shows']);
+          this.isSignUpMode = false
+        //  if(res){
+        //   this.router.navigate(['/shows']);
+        //  }
+        alert(res.msg + 'Click Ok to Login')
         },
         err => {
           console.error(err);
