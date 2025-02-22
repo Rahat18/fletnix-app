@@ -44,7 +44,7 @@ export class UserRegistrationComponent implements OnInit{
     if (this.signUpForm.valid) {
       this.authService.register(this.signUpForm.value).subscribe(
         res => {
-          console.log(res.msg);
+          // console.log(res.msg);
          if(res){
           this.router.navigate(['/shows']);
          }
@@ -60,12 +60,12 @@ export class UserRegistrationComponent implements OnInit{
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(
         (res: any) => {
-          console.log(res);
+          // console.log(res);
   
           localStorage.setItem('token', res.token);
   
           const decoded = jwtDecode(res.token);
-          console.log('Decoded Token:', decoded);
+          // console.log('Decoded Token:', decoded);
   
           if (decoded) {
             this.router.navigate(['/shows']);
