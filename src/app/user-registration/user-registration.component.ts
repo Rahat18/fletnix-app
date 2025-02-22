@@ -51,7 +51,7 @@ signupSuccess:boolean=false;
         //  if(res){
         //   this.router.navigate(['/shows']);
         //  }
-        this.snackBar.open(res.msg);
+        this.snackBar.open('Signup Succesfull');
         },
         err => {
           console.error(err);

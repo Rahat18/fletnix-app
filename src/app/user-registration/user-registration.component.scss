@@ -6,7 +6,7 @@
     }
     .registration-background {
         background-image: url('../../assets/img/netflix-bg.jpg');
-        height: calc(100vh - 16px);
+        height: 100vh;
         background-repeat: no-repeat;
         width: 100%;
         background-position: center;
@@ -177,12 +177,12 @@
     left: 80px;
     z-index: 3;
     height: 64px;
-    background-color: rgba(0, 0, 0, 0.7);
+    // background-color: rgba(0, 0, 0, 0.7);
     padding: 0 4px;
     border-radius: 4px;
 
     @media(max-width:767px){
-       left: 40px;
+       left: 10px;
     }
     .fletnix-logo {
         color: #E50914;
