@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { Collection, CollectionsResponse, CollectionsService, NetflixTitle } from '../services/collection.service';
+import { AuthService } from '../services/auth-service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-shows',
@@ -24,7 +26,7 @@ export class ShowsComponent {
   dummyArray = new Array(15);
   showdetails:boolean = false;
   collectionDetails:any;
-  constructor(private router: Router, private collectionsService: CollectionsService) {
+  constructor(private router: Router, private collectionsService: CollectionsService , private authService: AuthService, private http: HttpClient,) {
 
 
     this.collectionsService.getCollections().subscribe(
@@ -44,6 +46,7 @@ export class ShowsComponent {
       }
     );
 
+    this.getUserDetails()
   }
   searchQuery: string = '';
   results: string[] = [];
@@ -162,4 +165,26 @@ export class ShowsComponent {
 console.log(item)
 this.collectionDetails = item
   }
+  user: any;
+
+  getUserDetails() {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+    this.http.get('http://localhost:5000/api/auth/user', { headers })
+      .subscribe(
+        (response: any) => {
+          this.user = response;
+          console.log("User:", response);
+          localStorage.setItem('user', JSON.stringify(response));
+        },
+        (error) => {
+          console.error('Error fetching user data', error);
+        }
+      );
+  }  
+  logout() {
+    localStorage.removeItem('token');
+  }
+  
 }

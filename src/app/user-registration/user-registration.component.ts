@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth-service';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-user-registration',
@@ -44,7 +45,7 @@ export class UserRegistrationComponent implements OnInit{
       this.authService.register(this.signUpForm.value).subscribe(
         res => {
           console.log(res.msg);
-         if(res.msg == 'User registered successfully'){
+         if(res){
           this.router.navigate(['/shows']);
          }
         },
@@ -58,9 +59,15 @@ export class UserRegistrationComponent implements OnInit{
   onLogin() {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(
-        res => {
-          console.log(res.msg);
-          if(res.msg == 'Login successful'){
+        (res: any) => {
+          console.log(res);
+  
+          localStorage.setItem('token', res.token);
+  
+          const decoded = jwtDecode(res.token);
+          console.log('Decoded Token:', decoded);
+  
+          if (decoded) {
             this.router.navigate(['/shows']);
           }
         },
@@ -70,6 +77,7 @@ export class UserRegistrationComponent implements OnInit{
       );
     }
   }
+  
   onForgotPassword() {
     alert('Redirect to Forgot Password Page');
   }

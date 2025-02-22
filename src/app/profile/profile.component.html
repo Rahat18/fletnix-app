@@ -1,0 +1,13 @@
+<div class="profile-container">
+    <h2>User Profile</h2>
+  
+    <div *ngIf="user; else noUser">
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Date of Birth:</strong> {{ formatDate(user.dob) }}</p>
+    </div>
+  
+    <ng-template #noUser>
+      <p>No user details available. Please login.</p>
+    </ng-template>
+  </div>
+  

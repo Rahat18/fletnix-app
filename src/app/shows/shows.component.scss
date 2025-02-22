@@ -62,6 +62,7 @@
     height: auto;
     flex-direction: column;
     padding: 0 80px;
+    min-height: 100vh;
     @media(max-width:767px) {
         left: 0px;
         padding: 0 16px;
@@ -72,12 +73,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
-    justify-content: space-between;
+    // justify-content: space-between;
     margin: 60px 0
 }
 
 .grid-item {
-    flex: 1 0 calc(20% - 16px);
+    flex: 1 0 calc(20% - 16px); 
+    flex: 0 0 200px; /* Fixed width */
     box-sizing: border-box;
     border: 1px solid #ccc;
     padding: 10px;

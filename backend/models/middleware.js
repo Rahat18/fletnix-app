@@ -1,31 +1,24 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User'); // Mongoose User model
-const secretKey = 'your_secret_key'; // Use a secure key, store in env variable
+const User = require('../models/user');
+const JWT_SECRET = 'your_jwt_secret_key';
 
 module.exports = async (req, res, next) => {
   try {
-    // Expecting "Authorization: Bearer <token>"
     const authHeader = req.headers.authorization;
-    if (!authHeader) {
-      return res.status(401).json({ msg: 'No token provided' });
-    }
+    if (!authHeader) return res.status(401).json({ msg: 'No token provided' });
 
-    const token = authHeader.split(' ')[1]; // Bearer <token>
-    if (!token) {
-      return res.status(401).json({ msg: 'Invalid token format' });
-    }
+    const token = authHeader.split(' ')[1] || authHeader;
+    if (!token) return res.status(401).json({ msg: 'Invalid token format' });
 
-    // Verify and decode the token
-    const decoded = jwt.verify(token, secretKey);
-    // decoded typically contains { userId: ..., iat: ..., exp: ... }
+    // Verify token
+    const decoded = jwt.verify(token, JWT_SECRET);
 
-    // Fetch user from database
-    const user = await User.findById(decoded.userId).select('-password'); 
-    // ^ select('-password') excludes the password field
+    // Ensure token contains correct user data
+    if (!decoded.id) return res.status(401).json({ msg: 'Invalid token payload' });
 
-    if (!user) {
-      return res.status(404).json({ msg: 'User not found' });
-    }
+    // Fetch user
+    const user = await User.findById(decoded.id).select('-password');
+    if (!user) return res.status(404).json({ msg: 'User not found' });
 
     // Attach user to request
     req.user = user;

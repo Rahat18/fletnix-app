@@ -21,4 +21,23 @@ export class AuthService {
   login(userData: any): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, userData);
   }
+  // login(email: string, password: string) {
+  //   return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { email, password });
+  // }
+
+  saveToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  isLoggedIn() {
+    return !!this.getToken();
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+  }
 }

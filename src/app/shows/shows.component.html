@@ -1,5 +1,4 @@
-<div class="d-flex shows-wrapper" [ngStyle]="{
-    'height': showdetails ? '100vh' : 'auto'}">
+<div class="d-flex shows-wrapper">
     <div>
         <nav class="navbar bg-dark border-bottom border-body registration-navbar d-flex a-center" data-bs-theme="dark">
             <span class="fletnix-logo" (click)="gotoHome()">FletNix</span>
@@ -15,6 +14,8 @@
                 </span>
             </span>
         </nav>
+        <span class="fletnix-logout" (click)="logout()" style="color: #fff; cursor: pointer;">Logout</span>
+
     </div>
     <div class="d-flex dropdown-select a-center" *ngIf="!showdetails">
         <label class="f-inter">Type:</label>
@@ -25,7 +26,7 @@
             <option value="TV Show" class="f-inter">TV Show</option>
         </select>
     </div>
-    <div class="grid-container" *ngIf="!loading && !showdetails">
+    <div class="grid-container" *ngIf="!loading && !showdetails && displayedTitles.length > 0">
         <div class="grid-item" *ngFor="let item of displayedTitles" (click)="showDetails(item)">
             <div class="grid-item-img"></div>
             <div class="d-flex title-wrapper j-center">
@@ -38,6 +39,9 @@
 
         </div>
     </div>
+    <div class="d-flex j-center a-center" *ngIf="!loading && !showdetails && displayedTitles.length == 0">
+        <h3 style="color: #ccc;font-size: 32px; font-weight: 600;margin: 200px 0;">No Shows found</h3>
+    </div>
     <div class="grid-container" *ngIf="loading">
         <div class="grid-item" *ngFor="let item of dummyArray">
             <div class="grid-item-img"></div>
@@ -46,7 +50,7 @@
             </div>
         </div>
     </div>
-    <div class="pagination-controls d-flex" *ngIf="!loading && !showdetails">
+    <div class="pagination-controls d-flex" *ngIf="!loading && !showdetails && displayedTitles.length > 0">
         <button (click)="previousPage()" *ngIf="currentPage !== 1" class="f-inter">Previous</button>
 
         <span *ngFor="let page of pageNumbers">
@@ -60,7 +64,7 @@
         <button (click)="nextPage()" *ngIf="currentPage !== totalPages" class="f-inter">Next</button>
     </div>
 
-    <div class="page-info d-flex f-inter" *ngIf="!loading && !showdetails">
+    <div class="page-info d-flex f-inter" *ngIf="!loading && !showdetails && displayedTitles.length > 0">
         Page {{ currentPage }} of {{ totalPages }}
     </div>
 
