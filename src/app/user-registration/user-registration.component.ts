@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth-service';
 import { jwtDecode } from 'jwt-decode';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-registration',
@@ -15,7 +16,7 @@ export class UserRegistrationComponent implements OnInit{
   isSignUpMode: boolean = true;
   hidePassword: boolean = true;
   user_type:any
-  constructor(private fb: FormBuilder , private router: Router , private authService: AuthService) {
+  constructor(private fb: FormBuilder , private router: Router , private authService: AuthService , private snackBar: MatSnackBar) {
 
     // Initialize Sign Up Form
     this.signUpForm = this.fb.group({
@@ -39,7 +40,7 @@ export class UserRegistrationComponent implements OnInit{
   toggleMode() {
     this.isSignUpMode = !this.isSignUpMode;
   }
-
+signupSuccess:boolean=false;
   onSignUp() {
     if (this.signUpForm.valid) {
       this.authService.register(this.signUpForm.value).subscribe(
@@ -50,7 +51,7 @@ export class UserRegistrationComponent implements OnInit{
         //  if(res){
         //   this.router.navigate(['/shows']);
         //  }
-        alert(res.msg + 'Click Ok to Login')
+        this.snackBar.open(res.msg);
         },
         err => {
           console.error(err);
