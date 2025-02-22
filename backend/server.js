@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-const dbURI = 'mongodb+srv://sidharthjhaa:test1234@fletnixdb.v9jyc.mongodb.net/'; // Replace with your MongoDB URI and database name
+const dbURI = 'mongodb+srv://Rahat:Rahat_7980@cluster0.tn45d.mongodb.net/netflix?authSource=admin'; // Replace with your MongoDB URI and database name
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error(err));

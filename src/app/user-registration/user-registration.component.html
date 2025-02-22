@@ -25,7 +25,8 @@
 
                 <div class="form-group">
                     <div class="floating-label-group">
-                        <input class="f-inter" id="signup-password"  [type]="!hidePassword ? 'text' : 'password'"  formControlName="password" required>
+                        <input class="f-inter" id="signup-password" [type]="!hidePassword ? 'text' : 'password'"
+                            formControlName="password" required>
                         <label class="f-inter" for="signup-password">Password</label>
                         <span class="toggle-password" (click)="togglePasswordVisibility()">
                             <span *ngIf="!hidePassword">
@@ -91,7 +92,8 @@
 
                 <div class="form-group">
                     <div class="floating-label-group">
-                        <input class="f-inter" id="login-password"  [type]="!hidePassword ? 'text' : 'password'" formControlName="password" required>
+                        <input class="f-inter" id="login-password" [type]="!hidePassword ? 'text' : 'password'"
+                            formControlName="password" required>
                         <label class="f-inter" for="login-password">Password</label>
                         <span class="toggle-password" (click)="togglePasswordVisibility()">
                             <span *ngIf="!hidePassword">

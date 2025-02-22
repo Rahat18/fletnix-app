@@ -24,15 +24,15 @@ export class ShowsComponent {
   filterType: string = '';
   loading: boolean = true;
   dummyArray = new Array(15);
-  showdetails:boolean = false;
-  collectionDetails:any;
-  constructor(private router: Router, private collectionsService: CollectionsService , private authService: AuthService, private http: HttpClient,) {
+  showdetails: boolean = false;
+  collectionDetails: any;
+  constructor(private router: Router, private collectionsService: CollectionsService, private authService: AuthService, private http: HttpClient,) {
 
 
     this.collectionsService.getCollections().subscribe(
       (res: any) => {
         this.loading = false
-        console.log(res.entries.length);
+        // console.log(res.entries.length);
         const flatArray = res.entries.reduce((acc: string | any[], curr: any) => acc.concat(curr), []);
         this.allTitles = flatArray;
         this.collectionNames = res.collections;
@@ -111,6 +111,13 @@ export class ShowsComponent {
     if (this.filterType && this.filterType.trim() !== '') {
       filtered = filtered.filter((title: { type: string; }) => title.type === this.filterType);
     }
+    // Calculate user's age from DOB
+    const userAge = this.calculateAge(this.user.dob);
+
+    // If user is under 18, filter out items rated "R"
+    if (userAge < 18) {
+      filtered = filtered.filter((title: { rating: string; }) => title.rating !== 'R');
+    }
 
     this.totalPages = Math.ceil(filtered.length / this.itemsPerPage);
     if (this.currentPage > this.totalPages) {
@@ -159,32 +166,41 @@ export class ShowsComponent {
   gotoHome() {
     this.router.navigate(['/']);
   }
-  showDetails(item:any){
+  showDetails(item: any) {
     this.showdetails = true;
-    console.log("item")
-console.log(item)
-this.collectionDetails = item
+    this.collectionDetails = item
   }
   user: any;
 
   getUserDetails() {
     const token = this.authService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  
+
     this.http.get('http://localhost:5000/api/auth/user', { headers })
       .subscribe(
         (response: any) => {
           this.user = response;
-          console.log("User:", response);
+          // console.log("User:", response);
           localStorage.setItem('user', JSON.stringify(response));
         },
         (error) => {
           console.error('Error fetching user data', error);
         }
       );
-  }  
+  }
   logout() {
     localStorage.removeItem('token');
+    this.router.navigate(['/']);
   }
-  
+  calculateAge(dobString: string): number {
+    const dob = new Date(dobString);
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDifference = today.getMonth() - dob.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dob.getDate())) {
+      age--;
+    }
+    return age;
+  }
+
 }
