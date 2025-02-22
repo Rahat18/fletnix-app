@@ -176,7 +176,7 @@ export class ShowsComponent {
     const token = this.authService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.http.get('http://localhost:5000/api/auth/user', { headers })
+    this.http.get('https://fletnix-app.onrender.com/api/auth/user', { headers })
       .subscribe(
         (response: any) => {
           this.user = response;

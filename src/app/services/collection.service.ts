@@ -10,7 +10,8 @@ export interface CollectionsResponse {
   providedIn: 'root'
 })
 export class CollectionsService {
-  private apiUrl = 'http://localhost:5000/api/netflix';
+  // private apiUrl = 'http://localhost:5000/api/netflix';
+  private apiUrl ='https://fletnix-app.onrender.com/api/netflix'
 
   constructor(private http: HttpClient) { }
 
